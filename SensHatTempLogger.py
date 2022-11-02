@@ -9,12 +9,15 @@ from time import sleep
 sense = SenseHat()
 sense.clear()
 
-while True:
-    
-  sleep(5)
+def SensorRun():
   temp = str(round(sense.get_temperature(),0))
   pressure = str(round(sense.get_pressure(),0))
-  humidity = str(round(sense.get_humidity(),0))
+  humidity = str(round(sense.get_humidity(),0))    
+
+while True:
+    
+  sleep(300)
+  SensorRun()
   myfile = open('log.txt', 'a')
   myfile.write(temp + " " + pressure + " " + humidity)
   myfile.write('\n')
@@ -23,9 +26,7 @@ while True:
   for event in sense.stick.get_events():
 
     if event.action == "pressed":
-        temp = str(round(sense.get_temperature(),0))
-        pressure = str(round(sense.get_pressure(),0))
-        humidity = str(round(sense.get_humidity(),0))
+        SensorRun()
         
         if event.direction == "middle":
             sense.show_message("T " + temp + " P " + pressure + " H " + humidity)     
