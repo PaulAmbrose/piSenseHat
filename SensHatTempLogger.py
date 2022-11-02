@@ -10,22 +10,28 @@ sense = SenseHat()
 sense.clear()
 
 while True:
+    
+  sleep(5)
+  temp = str(round(sense.get_temperature(),0))
+  pressure = str(round(sense.get_pressure(),0))
+  humidity = str(round(sense.get_humidity(),0))
+  myfile = open('log.txt', 'a')
+  myfile.write(temp + " " + pressure + " " + humidity)
+  myfile.write('\n')
+  myfile.close
+  
   for event in sense.stick.get_events():
 
     if event.action == "pressed":
-        temp = round(sense.get_temperature(),0)
-        pressure = round(sense.get_pressure(),0)
-        humidity = round(sense.get_humidity(),0)
+        temp = str(round(sense.get_temperature(),0))
+        pressure = str(round(sense.get_pressure(),0))
+        humidity = str(round(sense.get_humidity(),0))
         
-        print(temp)
-
         if event.direction == "middle":
-            sense.show_message(
-                              str(temp)
-                               )     
+            sense.show_message("T " + temp + " P " + pressure + " H " + humidity)     
         else:
-            
             pass
 
-        sleep(5.0)
+        sleep
+        (5.0)
         sense.clear()
