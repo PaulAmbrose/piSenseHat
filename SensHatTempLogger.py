@@ -1,7 +1,7 @@
-#TEST123 An object Oriented program using sense HAT that
+#  An object Oriented program using sense HAT that
 #  >>Creates a text file for the day
 #  >>Reads the temperature, pressure and humidity every 5mins across the day and then
-#    saves the file
+#  saves the file
 
 from sense_hat import SenseHat
 from time import sleep, strftime, time
